@@ -50,22 +50,26 @@ function doItForInputElem(inp: string) {
                 })
 
                 const currentSoftwareDependencies = softwareToBeRemoved.getDependencies();
+                console.log("Removing " + softwareToBeRemoved)
                 for (const index in currentSoftwareDependencies) {
                     const dependency = currentSoftwareDependencies[index];
                     if (canRemoveSoftware(dependency)) {
                         console.log("Removing " + dependency.toString());
-                        removeSoftware(installedSoftware, dependency);
+                        installedSoftware = installedSoftware.filter(function (item) {
+                            return !item.equals(dependency)
+                        })
                     }
                 }
             } else {
                 console.log(softwareToBeRemoved + " is still needed");
-                break;
             }
+            break;
         case COMMAND.LIST:
             for (const index in installedSoftware) {
                 const installedSoft = installedSoftware[index];
                 console.log(installedSoft.toString());
             }
+            break;
         case COMMAND.END:
             break;
     }
@@ -74,12 +78,6 @@ function doItForInputElem(inp: string) {
 function install(software: Software) {
     console.log("Installing " + software.toString());
     installedSoftware.push(software);
-}
-
-function removeSoftware(softwareArray: Software[], softwareToRemove: Software): Software[] {
-    return softwareArray.filter(function (item) {
-        return !item.equals(softwareToRemove)
-    })
 }
 
 function buildDependencies(softwareName: string, dependencies: string[]) {
