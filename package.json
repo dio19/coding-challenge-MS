@@ -1,0 +1,17 @@
+{
+    "name": "software-dependency",
+    "version": "1.0.1",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+        "example": "ts-node ./index.ts"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "typescript": "^4.5.5"
+    },
+    "devDependencies": {
+        "ts-node": "^10.4.0"
+    }
+}
