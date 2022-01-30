@@ -16,8 +16,17 @@ function doItForInputElem(inp: string) {
     console.log(parsedInput);
     const commandTokens: string[] = parsedInput.split(" ");
     const commandString = commandTokens[0];
-    const command: COMMAND = commandString as COMMAND;
+    let command: COMMAND = commandString as COMMAND;
     const commandArgs = commandTokens.slice(1);
+    if (parsedInput.length > 80) {
+        console.log(`"${parsedInput}" contains more than 80 characters. Ignoring command!`);
+        command = 'END' as COMMAND;
+    };
+    const invalidItemName = commandArgs.find((arg) => arg.length > 10);
+    if (invalidItemName) {
+        console.log(`"${invalidItemName}" contains more than 10 characters. Ignoring command!`);
+        command = 'END' as COMMAND;
+    };
     switch (command) {
         case COMMAND.DEPEND:
             const softwareName = commandArgs[0];
