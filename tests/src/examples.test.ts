@@ -53,7 +53,7 @@ describe('Test code with invalid commands', () => {
             const lineTokens: string[] = parsedLine.split(" ");
             const commandName = lineTokens[0];
             const command: COMMAND = commandName as COMMAND;
-            if (command === null) {
+            if (COMMAND[command] === undefined) {
                 invalidNames.push(command);
             }
         })
