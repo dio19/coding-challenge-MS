@@ -22,6 +22,14 @@ Aparecera el Output esperado en base al input que fue proporcionado como muestra
 
 ### Correr los tests (implementados con Jest)
 
+En los tests sume los casos mencionados en el ejercicio a tener en cuenta:
+
+1. Cada línea de comando no podra contener más de 80 caracteres.
+2. Los nombres de los elementos distinguen entre mayúsculas y minúsculas y cada uno no tiene más de 10 caracteres.
+3. Los nombres de los comandos (DEPEND, INSTALL, REMOVE y LIST) siempre aparecen en mayúsculas como primer elemento en la linea de comando. Si este primer elemento no matchea con ninguno de estos comandos o no esta en mayuscula consologueara el error.
+
+En todos los casos anteriormente mencionados el codigo consologuea el error e ignora el comando, continuando con el siguiente en el input ingresado.
+
 ```
 npm test
 
