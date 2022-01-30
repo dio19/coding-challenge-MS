@@ -22,6 +22,11 @@ Aparecera el Output esperado en base al input que fue proporcionado como muestra
 
 ### Correr los tests (implementados con Jest)
 
+```
+npm test
+
+```
+
 En los tests sume los casos mencionados en el ejercicio a tener en cuenta:
 
 1. Cada línea de comando no podra contener más de 80 caracteres.
@@ -30,7 +35,3 @@ En los tests sume los casos mencionados en el ejercicio a tener en cuenta:
 
 En todos los casos anteriormente mencionados el codigo consologuea el error e ignora el comando, continuando con el siguiente en el input ingresado.
 
-```
-npm test
-
-```
