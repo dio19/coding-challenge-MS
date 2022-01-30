@@ -10,7 +10,11 @@ cd coding-challenge-MS
 npm install
 
 ```
-Testear ejemplo de muestra del ejercicio:
+El codigo esta desarrollado en **Typescrypt** y los tests estan implementados en **Jest.js**
+Para poder utilizar Jest y que sea compatible con TypeScript, se sumo Babel como asi otras configuraciones y dependencias necesarias.
+
+
+### Testear ejemplo de muestra del ejercicio:
 
 ```
 npm run example
