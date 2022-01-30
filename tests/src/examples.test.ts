@@ -1,6 +1,7 @@
 import { SAMPLE_INPUT, EXPECTED_OUTPUT } from '../mocks/sample';
-import { INVALID_LINE, INVALID_ITEM_NAME } from '../mocks/invalidCommands';
+import { INVALID_LINE, INVALID_ITEM_NAME, INVALID_COMMAND } from '../mocks/invalidCommands';
 import { doIt } from '../../src/software-dependency';
+import { COMMAND } from '../../src/command';
 
 describe('Test code with an example input', () => {
     it('Expected output', () => {
@@ -12,17 +13,24 @@ describe('Test code with an example input', () => {
       });
 });
 
-describe('Test code with invalid line', () => {
-    it('Expected output when a command line is longer than 80 characters', () => {
+describe('Test code with invalid lines', () => {
+    it('Expected output when there is a command line that contains more than 80 characters', () => {
         const consoleSpy = jest.spyOn(console, 'log');
-        const invalidLine = INVALID_LINE.find((line) => line.length > 80)
+        const invalidLines = [];
+        INVALID_LINE.forEach((line) => {
+            if(line.length > 80) {
+                invalidLines.push(line);
+            }
+        })
         doIt(INVALID_LINE);
-        expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining(`"${invalidLine}" contains more than 80 characters. Ignoring command!`));
+        invalidLines.length > 0 && invalidLines.forEach((line) => {
+            expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining(`"${line}" contains more than 80 characters. Ignoring command!`));
+        })
       });
 });
 
 describe('Test code with invalid item name', () => {
-    it('Expected output when a item name is longer than 10 characters', () => {
+    it('Expected output when there is a item name that contains more than 10 characters', () => {
         const consoleSpy = jest.spyOn(console, 'log');
         let invalidName = '';
         INVALID_ITEM_NAME.forEach((line) => {
@@ -30,9 +38,28 @@ describe('Test code with invalid item name', () => {
             const lineTokens = parsedLine.split(" ");
             const commandNames = lineTokens.slice(1);
             invalidName = commandNames.find((name) => name.length > 10)
-            console.log('invalid name', invalidName)
         })
         doIt(INVALID_ITEM_NAME);
         invalidName && expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining(`"${invalidName}" contains more than 10 characters. Ignoring command!`));
+      });
+});
+
+describe('Test code with invalid commands', () => {
+    it('Expected output when there is a invalid command', () => {
+        const consoleSpy = jest.spyOn(console, 'log');
+        let invalidNames = [];
+        INVALID_COMMAND.forEach((line) => {
+            const parsedLine = line.replace(/  +/g, ' ');
+            const lineTokens: string[] = parsedLine.split(" ");
+            const commandName = lineTokens[0];
+            const command: COMMAND = commandName as COMMAND;
+            if (command === null) {
+                invalidNames.push(command);
+            }
+        })
+        doIt(INVALID_COMMAND);
+        invalidNames.length > 0 && invalidNames.forEach((name) => {
+            expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining(`"${name}" is not a valid command. Try typing in uppercase, please`));
+        })
       });
 });

@@ -82,6 +82,7 @@ function doItForInputElem(inp: string) {
         case COMMAND.END:
             break;
     }
+    command === null && console.log(`"${command}" is not a valid command. Try typing in uppercase, please`);
 }
 
 function install(software: Software) {

@@ -1,8 +1,8 @@
 import { doIt } from "./src/software-dependency";
-import { EXAMPLE_INPUT } from "./tests/mocks/example";
+import { SAMPLE_INPUT } from "./tests/mocks/sample";
 
 export default function runExample(input: string[]) {
     doIt(input);
 };
 
-runExample(EXAMPLE_INPUT);
+runExample(SAMPLE_INPUT);
