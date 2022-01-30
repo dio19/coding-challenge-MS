@@ -39,3 +39,10 @@ En los tests sume los casos mencionados en el ejercicio a tener en cuenta:
 
 En todos los casos anteriormente mencionados el codigo consologuea el error e ignora el comando, continuando con el siguiente en el input ingresado.
 
+### Para generar el reporte de codigo cubierto por tests.
+
+```
+npm test -- --coverage
+
+```
+
